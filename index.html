@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dave's Closet | Luxury Fashion Boutique</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#1a1a1a", secondary: "#e6d9cc" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+          font-family: 'Montserrat', sans-serif;
+          scroll-behavior: smooth;
+      }
+      h1, h2, h3, h4, h5, h6 {
+          font-family: 'Cormorant Garamond', serif;
+      }
+      .hero-section {
+          background-image: url('./images/landing\ pg01.jpg');
+          background-size: cover;
+          background-position: center;
+      }
+      .product-card:hover .product-details {
+          opacity: 1;
+          transform: translateY(0);
+      }
+      .product-details {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: all 0.3s ease;
+      }
+      .fade-in {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 1s ease, transform 1s ease;
+      }
+      .fade-in.visible {
+          opacity: 1;
+          transform: translateY(0);
+      }
+      .accordion-content {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+      }
+      .accordion-content.active {
+          max-height: 500px;
+      }
+      .custom-checkbox {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          background: transparent;
+          border: 1px solid #1a1a1a;
+          position: relative;
+          cursor: pointer;
+      }
+      .custom-checkbox.checked::after {
+          content: '';
+          position: absolute;
+          top: 3px;
+          left: 3px;
+          width: 12px;
+          height: 12px;
+          background: #1a1a1a;
+      }
+      .custom-switch {
+          position: relative;
+          display: inline-block;
+          width: 50px;
+          height: 24px;
+      }
+      .custom-switch-input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+      }
+      .custom-switch-slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #e6e6e6;
+          transition: .4s;
+          border-radius: 34px;
+      }
+      .custom-switch-slider:before {
+          position: absolute;
+          content: "";
+          height: 16px;
+          width: 16px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          transition: .4s;
+          border-radius: 50%;
+      }
+      .custom-switch-input:checked + .custom-switch-slider {
+          background-color: #1a1a1a;
+      }
+      .custom-switch-input:checked + .custom-switch-slider:before {
+          transform: translateX(26px);
+      }
+      .custom-radio {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          background: transparent;
+          border: 1px solid #1a1a1a;
+          border-radius: 50%;
+          position: relative;
+          cursor: pointer;
+      }
+      .custom-radio.checked::after {
+          content: '';
+          position: absolute;
+          top: 4px;
+          left: 4px;
+          width: 10px;
+          height: 10px;
+          background: #1a1a1a;
+          border-radius: 50%;
+      }
+      .custom-range {
+          -webkit-appearance: none;
+          width: 100%;
+          height: 2px;
+          background: #e6e6e6;
+          outline: none;
+          padding: 0;
+          margin: 0;
+      }
+      .custom-range::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 16px;
+          height: 16px;
+          background: #1a1a1a;
+          cursor: pointer;
+          border-radius: 50%;
+      }
+      .custom-range::-moz-range-thumb {
+          width: 16px;
+          height: 16px;
+          background: #1a1a1a;
+          cursor: pointer;
+          border-radius: 50%;
+          border: none;
+      }
+      .tab-button {
+          position: relative;
+          overflow: hidden;
+      }
+      .tab-button::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          background: #1a1a1a;
+          transition: all 0.3s ease;
+          transform: translateX(-50%);
+      }
+      .tab-button.active::after {
+          width: 80%;
+      }
+      input:focus, textarea:focus {
+          outline: none;
+          border-color: #1a1a1a;
+      }
+
+
+
+
+
+      
+    </style>
+  </head>
+  <body class="bg-white text-gray-800 overflow-x-hidden">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
+  <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+    <!-- Logo with text -->
+    <a href="index.html" class="flex items-center space-x-2">
+      <!-- Logo image - replace src with your actual image path -->
+      <img 
+        src="./images/Daves Closet Logo.png" 
+        alt="Dave's Cloth Logo"
+        class="h-11 w-auto"   
+      />
+      <!-- Text beside the logo -->
+      <span class="text-xl font-['Pacifico'] font-medium text-primary">Dave's Closet</span>
+    </a>
+
+    <nav class="hidden md:flex items-center space-x-8">
+      <a
+        href="index.html"
+        class="text-sm font-medium hover:text-primary transition-colors"
+        >Home</a
+      >
+      <a
+        href="collections.html"
+        class="text-sm font-medium hover:text-primary transition-colors"
+        >Collections</a
+      >
+      <a
+        href="./About.html"
+        class="text-sm font-medium hover:text-primary transition-colors"
+        >About</a
+      >
+      <a
+        href="./index.html#contact"
+        class="text-sm font-medium hover:text-primary transition-colors"
+        >Contact</a
+      >
+    </nav>
+
+    <div class="flex items-center space-x-4">
+      <a
+        href="#contact"
+        class="hidden md:block bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all"
+        >Visit Us</a
+      >
+
+      <button
+        id="mobile-menu-button"
+        class="md:hidden w-10 h-10 flex items-center justify-center text-primary"
+      >
+        <i class="ri-menu-line ri-lg"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-white border-t border-gray-100"
+  >
+    <div class="container mx-auto px-4 py-2">
+      <nav class="flex flex-col space-y-3 py-3">
+        <a
+          href="index.html"
+          class="text-sm font-medium py-2 hover:text-primary transition-colors"
+          >Home</a
+        >
+        <a
+          href="collections.html"
+          class="text-sm font-medium py-2 hover:text-primary transition-colors"
+          >Collections</a
+        >
+        <a
+          href="./About.html"
+          class="text-sm font-medium py-2 hover:text-primary transition-colors"
+          >About</a
+        >
+        <a
+          href="#contact"
+          class="text-sm font-medium py-2 hover:text-primary transition-colors"
+          >Contact</a
+        >
+        <a
+          href="#contact"
+          class="bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-center mt-2"
+          >Visit Us</a
+        >
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- WhatsApp Button - Bottom Right Floating -->
+<div class="fixed bottom-6 right-6 z-50">
+  <a href="https://wa.me/+2349036703863?text=Hello%20there,%20I'm%20interested%20in%20your%20services" 
+     target="_blank"
+     rel="noopener noreferrer"
+     class="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg hover:scale-105 transition-all duration-300 hover:shadow-xl">
+    <i class="ri-whatsapp-line ri-2x"></i>
+  </a>
+</div>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="hero-section min-h-screen pt-24 flex items-center"
+    >
+      <div class="container mx-auto px-4 w-full">
+        <div class="max-w-2xl bg-white/80 backdrop-blur-sm p-8 md:p-12 fade-in">
+          <h1 class="text-4xl md:text-6xl font-light mb-4 leading-tight">
+            Curated Fashion for the Discerning
+          </h1>
+          <p class="text-lg md:text-xl mb-8 font-light">
+            Experience our handpicked collections in person. Feel the fabrics,
+            appreciate the craftsmanship, find your perfect fit.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="#products"
+              class="bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-sm font-medium"
+              >Explore Collections</a
+            >
+            <a
+              href="#contact"
+              class="border border-primary text-primary px-8 py-3 !rounded-button whitespace-nowrap hover:bg-primary hover:text-white transition-all text-sm font-medium"
+              >Visit Our Boutique</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Categories -->
+    <section id="products" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl md:text-5xl font-light mb-4">Our Collections</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Discover our carefully curated collections, designed with attention
+            to detail and commitment to quality.
+          </p>
+        </div>
+
+        <div class="mb-8 fade-in">
+          <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <button
+              class="tab-button active px-6 py-2 !rounded-full whitespace-nowrap bg-white shadow-sm text-sm font-medium"
+            >
+              All Collections
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Product 1 -->
+          <div
+            class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+          >
+            <div class="aspect-[3/4] overflow-hidden">
+              <img
+                src="./images/collection1.jpg"
+                alt="Summer Collection"
+                class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div
+              class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+            >
+              <h3 class="text-xl font-medium mb-2">Brown T-Shirt</h3>
+              <p class="text-gray-600 mb-4">
+                Lightweight fabrics in neutral tones, designed for comfort and
+                elegance.
+              </p>
+              <span
+                
+                class="inline-block bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-sm"
+                >₦20,000</span
+              >
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div
+            class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+          >
+            <div class="aspect-[3/4] overflow-hidden">
+              <img
+                src="./images/collection12.jpg"
+                alt="Evening Collection"
+                class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div
+              class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+            >
+              <h3 class="text-xl font-medium mb-2">Sleevless Zip Jacket</h3>
+              <p class="text-gray-600 mb-4">
+                Zip Jacket in breathable material.
+              </p>
+              <span
+              
+                class="inline-block bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-sm"
+                >₦30,000</span
+              >
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div
+            class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+          >
+            <div class="aspect-[3/4] overflow-hidden">
+              <img
+                src="./images/collection6.jpg"
+                alt="Casual Collection"
+                class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div
+              class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+            >
+              <h3 class="text-xl font-medium mb-2">Grey T-shirt</h3>
+              <p class="text-gray-600 mb-4">
+                Effortlessly stylish pieces for everyday elegance, combining
+                comfort and refinement.
+              </p>
+              <span
+                
+                class="inline-block bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-sm"
+                >₦35,000</span
+              >
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div
+            class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+          >
+            <div class="aspect-[3/4] overflow-hidden">
+              <img
+                src="./images/collection4.jpg"
+                alt="Business Collection"
+                class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div
+              class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+            >
+              <h3 class="text-xl font-medium mb-2">Cotton White Tank Top</h3>
+              <p class="text-gray-600 mb-4">
+                Tailored pieces that command attention, versatile organic cotton top imported from oversees.
+              </p>
+              <span
+                class="inline-block bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-sm"
+                >₦14,200</span
+              >
+            </div>
+          </div>
+
+          <!-- Product 5 -->
+          <div
+            class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+          >
+            <div class="aspect-[3/4] overflow-hidden">
+              <img
+                src="./images/collection10.jpg"
+                alt="Accessories Collection"
+                class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div
+              class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+            >
+              <h3 class="text-xl font-medium mb-2">Black Jeans</h3>
+              <p class="text-gray-600 mb-4">
+                Top of the line designer black jeans..
+              </p>
+              <span
+                class="inline-block bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-sm"
+                >₦40,000</span
+              >
+            </div>
+          </div>
+
+          <!-- Product 6 -->
+          <div
+            class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+          >
+            <div class="aspect-[3/4] overflow-hidden">
+              <img
+                src="./images/collection5.jpg"
+                alt="Sustainable Collection"
+                class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div
+              class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+            >
+              <h3 class="text-xl font-medium mb-2">Men's Sandals</h3>
+              <p class="text-gray-600 mb-4">
+                Sustainable fashion that doesn't compromise on style or quality,
+                using eco-friendly materials. Effortless steeze!
+              </p>
+              <span
+                class="inline-block bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-sm"
+                >₦15,000</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12 fade-in">
+          <a
+            href="./collections.html"
+            class="inline-block border border-primary text-primary px-8 py-3 !rounded-button whitespace-nowrap hover:bg-primary hover:text-white transition-all text-sm font-medium"
+            >View More Collections</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="fade-in">
+            <h2 class="text-3xl md:text-5xl font-light mb-6">Our Story</h2>
+            <p class="text-gray-600 mb-6">
+              Founded in 2015, DAVE'S CLOSET was born from a passion for exceptional
+              craftsmanship and timeless design. We believe that fashion is more
+              than just clothing—it's an expression of individuality and a
+              celebration of artistry.
+            </p>
+            <p class="text-gray-600 mb-6">
+              Our boutique carefully curates collections from established
+              designers and emerging talents who share our commitment to
+              quality, sustainability, and innovative design. Each piece in our
+              boutique has been selected for its exceptional craftsmanship,
+              unique aesthetic, and ability to transcend seasonal trends.
+            </p>
+            <p class="text-gray-600 mb-6">
+              Unlike online shopping, we believe in the irreplaceable experience
+              of touching fabrics, seeing true colors, and finding your perfect
+              fit with expert guidance. Our knowledgeable stylists provide
+              personalized attention to help you discover pieces that complement
+              your individual style.
+            </p>
+            <div class="flex gap-4 mt-8">
+             
+              
+              <a
+                href="./About.html"
+                class="border border-primary text-primary px-6 py-2 !rounded-button whitespace-nowrap hover:bg-primary hover:text-white transition-all text-sm"
+                >Read more</a
+              >
+            </div>
+          </div>
+
+          <div class="relative fade-in">
+            <img
+              src="./images/lp3.jpg"
+              alt="Our Boutique"
+              class="w-full h-auto !rounded-lg shadow-lg object-cover"
+            />
+            <div
+              class="absolute -bottom-8 -left-8 bg-white p-6 !rounded-lg shadow-lg max-w-xs hidden md:block"
+            >
+              <p class="text-gray-800 italic">
+                "We believe in creating a personal connection with each client,
+                understanding their needs and preferences to help them express
+                their unique style."
+              </p>
+              <p class="text-primary font-medium mt-4">
+                — David, Founder
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-24 fade-in">
+          <h2 class="text-3xl md:text-4xl font-light mb-12 text-center">
+            Our Values
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 !rounded-lg shadow-sm text-center">
+              <div
+                class="w-16 h-16 bg-secondary/20 !rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <i class="ri-heart-line ri-xl text-primary"></i>
+              </div>
+              <h3 class="text-xl font-medium mb-4">Quality Craftsmanship</h3>
+              <p class="text-gray-600">
+                We partner with designers who prioritize exceptional materials
+                and meticulous attention to detail in every piece.
+              </p>
+            </div>
+
+            <div class="bg-white p-8 !rounded-lg shadow-sm text-center">
+              <div
+                class="w-16 h-16 bg-secondary/20 !rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <i class="ri-leaf-line ri-xl text-primary"></i>
+              </div>
+              <h3 class="text-xl font-medium mb-4">Sustainable Practices</h3>
+              <p class="text-gray-600">
+                We are committed to promoting ethical fashion and reducing
+                environmental impact through thoughtful curation.
+              </p>
+            </div>
+
+            <div class="bg-white p-8 !rounded-lg shadow-sm text-center">
+              <div
+                class="w-16 h-16 bg-secondary/20 !rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <i class="ri-user-heart-line ri-xl text-primary"></i>
+              </div>
+              <h3 class="text-xl font-medium mb-4">Personal Connection</h3>
+              <p class="text-gray-600">
+                We believe in building relationships with our clients, offering
+                personalized styling advice and exceptional service.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl md:text-5xl font-light mb-4">
+            Frequently Asked Questions
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Find answers to common questions about our boutique, services, and
+            policies.
+          </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto">
+          <!-- FAQ Item 1 -->
+          <div class="accordion-item mb-4 fade-in">
+            <button
+              class="accordion-header flex justify-between items-center w-full bg-white p-6 !rounded-lg shadow-sm text-left"
+            >
+              <span class="text-lg font-medium"
+                >Do you offer personal styling services?</span
+              >
+              <i
+                class="ri-arrow-down-s-line ri-lg text-primary accordion-icon transition-transform"
+              ></i>
+            </button>
+            <div class="accordion-content bg-white px-6 !rounded-lg">
+              <div class="py-6 border-t border-gray-100">
+                <p class="text-gray-600">
+                  Yes, we offer complimentary personal styling consultations for
+                  all our clients. Our experienced stylists can help you find
+                  pieces that complement your style, body type, and lifestyle.
+                  You can book an appointment through our contact page or by
+                  calling our boutique directly.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="accordion-item mb-4 fade-in">
+            <button
+              class="accordion-header flex justify-between items-center w-full bg-white p-6 !rounded-lg shadow-sm text-left"
+            >
+              <span class="text-lg font-medium"
+                >What is your return policy?</span
+              >
+              <i
+                class="ri-arrow-down-s-line ri-lg text-primary accordion-icon transition-transform"
+              ></i>
+            </button>
+            <div class="accordion-content bg-white px-6 !rounded-lg">
+              <div class="py-6 border-t border-gray-100">
+                <p class="text-gray-600">
+                  We accept returns of unworn items with original tags within 14
+                  days of purchase. Items on sale or marked as final sale cannot
+                  be returned. We offer store credit or exchanges for returns.
+                  For more details, please speak with our staff during your
+                  visit.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="accordion-item mb-4 fade-in">
+            <button
+              class="accordion-header flex justify-between items-center w-full bg-white p-6 !rounded-lg shadow-sm text-left"
+            >
+              <span class="text-lg font-medium">Do you offer alterations?</span>
+              <i
+                class="ri-arrow-down-s-line ri-lg text-primary accordion-icon transition-transform"
+              ></i>
+            </button>
+            <div class="accordion-content bg-white px-6 !rounded-lg">
+              <div class="py-6 border-t border-gray-100">
+                <p class="text-gray-600">
+                  Yes, we provide alteration services to ensure your garments
+                  fit perfectly. Basic alterations are complimentary for
+                  full-priced items. For more extensive alterations, our staff
+                  will provide a quote based on the complexity of the work
+                  required. All alterations are performed by our skilled
+                  in-house tailor.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="accordion-item mb-4 fade-in">
+            <button
+              class="accordion-header flex justify-between items-center w-full bg-white p-6 !rounded-lg shadow-sm text-left"
+            >
+              <span class="text-lg font-medium"
+                >Can I reserve items to try on?</span
+              >
+              <i
+                class="ri-arrow-down-s-line ri-lg text-primary accordion-icon transition-transform"
+              ></i>
+            </button>
+            <div class="accordion-content bg-white px-6 !rounded-lg">
+              <div class="py-6 border-t border-gray-100">
+                <p class="text-gray-600">
+                  Absolutely! If you've seen items on our social media or
+                  website that you'd like to try, you can contact us to reserve
+                  them for your visit. Please provide details about the items
+                  and your planned visit date, and we'll ensure they're
+                  available for you to try on.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="accordion-item mb-4 fade-in">
+            <button
+              class="accordion-header flex justify-between items-center w-full bg-white p-6 !rounded-lg shadow-sm text-left"
+            >
+              <span class="text-lg font-medium"
+                >How often do you receive new collections?</span
+              >
+              <i
+                class="ri-arrow-down-s-line ri-lg text-primary accordion-icon transition-transform"
+              ></i>
+            </button>
+            <div class="accordion-content bg-white px-6 !rounded-lg">
+              <div class="py-6 border-t border-gray-100">
+                <p class="text-gray-600">
+                  We receive new pieces regularly throughout the season. Major
+                  collection updates typically arrive quarterly, with smaller
+                  additions monthly. Follow our social media or sign up for our
+                  newsletter to stay informed about new arrivals and exclusive
+                  previews.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div class="accordion-item mb-4 fade-in">
+            <button
+              class="accordion-header flex justify-between items-center w-full bg-white p-6 !rounded-lg shadow-sm text-left"
+            >
+              <span class="text-lg font-medium"
+                >Do you host special events?</span
+              >
+              <i
+                class="ri-arrow-down-s-line ri-lg text-primary accordion-icon transition-transform"
+              ></i>
+            </button>
+            <div class="accordion-content bg-white px-6 !rounded-lg">
+              <div class="py-6 border-t border-gray-100">
+                <p class="text-gray-600">
+                  Yes, we regularly host trunk shows, designer meet-and-greets,
+                  and seasonal collection previews. We also offer private
+                  shopping events for groups. Check our events calendar or
+                  contact us for information about upcoming events and private
+                  shopping opportunities.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12 fade-in">
+          <p class="text-gray-600 mb-6">
+            Still have questions? We're here to help.
+          </p>
+          <a
+            href="#contact"
+            class="inline-block bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-sm font-medium"
+            >Contact Us</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl md:text-5xl font-light mb-4">Style Resources</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Explore other sourced curated resources to enhance your style knowledge and
+            make informed fashion choices.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Resource 1 -->
+          <div class="bg-white shadow-sm !rounded-lg overflow-hidden fade-in">
+            <div class="aspect-[4/3] overflow-hidden">
+              <img
+                src="./images/styling.jpg"
+                alt="Styling Guide"
+                class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-medium mb-3">Seasonal Styling Guides</h3>
+              <p class="text-gray-600 mb-4">
+                Expert advice on building versatile wardrobes for each season,
+                with tips on layering, color coordination, and accessorizing.
+              </p>
+              <a
+                href="https://in.pinterest.com/search/pins/?q=african%20seasonal%20styling&rs=typed"
+                class="inline-flex items-center text-primary font-medium hover:underline"
+              >
+                View Guide
+                <i class="ri-arrow-right-line ri-sm ml-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Resource 2 -->
+          <div class="bg-white shadow-sm !rounded-lg overflow-hidden fade-in">
+            <div class="aspect-[4/3] overflow-hidden">
+              <img
+                src="./images/size.jpg"
+                alt="Size Guide"
+                class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-medium mb-3">
+                Comprehensive Size Guides
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Detailed sizing information for our collections, including
+                measurement techniques and fit recommendations for different
+                body types.
+              </p>
+              <a
+                href="https://www.grivetoutdoors.com/pages/clothing-size-chart?srsltid=AfmBOopvv_TeX-n6TV1sD_Z-TBFxT9SIgO8AkTuf8ms7dETwnGRBP1CP"
+                class="inline-flex items-center text-primary font-medium hover:underline"
+              >
+                View Guide
+                <i class="ri-arrow-right-line ri-sm ml-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Resource 3 -->
+          <div class="bg-white shadow-sm !rounded-lg overflow-hidden fade-in">
+            <div class="aspect-[4/3] overflow-hidden">
+              <img
+                src="./images/cloth.jpg"
+                alt="Care Guide"
+                class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-medium mb-3">Fabric Care Instructions</h3>
+              <p class="text-gray-600 mb-4">
+                Expert advice on maintaining the quality and longevity of your
+                garments, with specific care instructions for different fabrics.
+              </p>
+              <a
+                href="https://hee.sg/fabric-care-insturctions/"
+                class="inline-flex items-center text-primary font-medium hover:underline"
+              >
+                View Guide
+                <i class="ri-arrow-right-line ri-sm ml-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Resource 4 -->
+          <div class="bg-white shadow-sm !rounded-lg overflow-hidden fade-in">
+            <div class="aspect-[4/3] overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=sustainable%20fashion%20guide%2C%20eco-friendly%20clothing%20materials%2C%20professional%20photography%2C%20organic%20fabrics%2C%20soft%20lighting%2C%20neutral%20background%2C%20high-end%20sustainable%20fashion%20education&width=600&height=450&seq=resource4&orientation=landscape"
+                alt="Sustainability Guide"
+                class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-medium mb-3">
+                Sustainability in Fashion
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Information about our commitment to ethical fashion, sustainable
+                materials, and responsible consumption practices.
+              </p>
+              <a
+                href="https://en.wikipedia.org/wiki/Sustainable_fashion#:~:text=Sustainable%20fashion%20is%20a%20term,garments%20and%20uphold%20animal%20welfare."
+                class="inline-flex items-center text-primary font-medium hover:underline"
+              >
+                View Guide
+                <i class="ri-arrow-right-line ri-sm ml-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl md:text-5xl font-light mb-4">
+            Visit Our Boutique
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Experience our collections in person and receive personalized
+            styling advice from our expert team.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div class="fade-in">
+            <div class="bg-white shadow-sm !rounded-lg overflow-hidden h-full">
+              <div class="aspect-[16/9] relative">
+                <div
+                  class="absolute inset-0 bg-cover bg-center"
+                  style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png');"
+                ></div>
+              </div>
+              <div class="p-8">
+                <div class="mb-8">
+                  <h3 class="text-xl font-medium mb-4">Our Location</h3>
+                  <div class="flex items-start mb-3">
+                    <div
+                      class="w-8 h-8 flex items-center justify-center text-primary mr-3"
+                    >
+                      <i class="ri-map-pin-line ri-lg"></i>
+                    </div>
+                    <div>
+                      <p class="text-gray-800">Opposite customary court,</p>
+                      <p class="text-gray-800">Galadimawa, Abuja 10001</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start mb-3">
+                    <div
+                      class="w-8 h-8 flex items-center justify-center text-primary mr-3"
+                    >
+                      <i class="ri-phone-line ri-lg"></i>
+                    </div>
+                    <div>
+                      <p class="text-gray-800">+234 (912) 040-9549</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <div
+                      class="w-8 h-8 flex items-center justify-center text-primary mr-3"
+                    >
+                      <i class="ri-mail-line ri-lg"></i>
+                    </div>
+                    <div>
+                      <p class="text-gray-800">contact@davesclosetboutique.com</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 class="text-xl font-medium mb-4">Store Hours</h3>
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <p class="text-gray-600">Monday - Friday</p>
+                      <p class="text-gray-800 font-medium">
+                        10:00 AM - 7:00 PM
+                      </p>
+                    </div>
+                    <div>
+                      <p class="text-gray-600">Saturday</p>
+                      <p class="text-gray-800 font-medium">
+                        10:00 AM - 6:00 PM
+                      </p>
+                    </div>
+                    <div>
+                      <p class="text-gray-600">Sunday</p>
+                      <p class="text-gray-800 font-medium">
+                        11:00 AM - 5:00 PM
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-8">
+                  <h3 class="text-xl font-medium mb-4">Follow Us</h3>
+                  <div class="flex space-x-4">
+                    <a
+                      href="#"
+                      class="w-10 h-10 flex items-center justify-center bg-gray-100 !rounded-full hover:bg-primary hover:text-white transition-colors"
+                    >
+                      <i class="ri-instagram-line ri-lg"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="w-10 h-10 flex items-center justify-center bg-gray-100 !rounded-full hover:bg-primary hover:text-white transition-colors"
+                    >
+                      <i class="ri-facebook-line ri-lg"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="w-10 h-10 flex items-center justify-center bg-gray-100 !rounded-full hover:bg-primary hover:text-white transition-colors"
+                    >
+                      <i class="ri-pinterest-line ri-lg"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="w-10 h-10 flex items-center justify-center bg-gray-100 !rounded-full hover:bg-primary hover:text-white transition-colors"
+                    >
+                      <i class="ri-twitter-x-line ri-lg"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fade-in">
+            <div class="bg-white shadow-sm !rounded-lg p-8 h-full">
+              <h3 class="text-xl font-medium mb-6">Get in Touch</h3>
+              <form>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label
+                      for="name"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                      >Name</label
+                    >
+                    <input
+                      type="text"
+                      id="name"
+                      class="w-full px-4 py-3 !rounded-button border-gray-200 bg-gray-50 focus:border-primary focus:ring-primary/20 text-sm"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="email"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                      >Email</label
+                    >
+                    <input
+                      type="email"
+                      id="email"
+                      class="w-full px-4 py-3 !rounded-button border-gray-200 bg-gray-50 focus:border-primary focus:ring-primary/20 text-sm"
+                      placeholder="Your email"
+                    />
+                  </div>
+                </div>
+
+                <div class="mb-6">
+                  <label
+                    for="subject"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Subject</label
+                  >
+                  <input
+                    type="text"
+                    id="subject"
+                    class="w-full px-4 py-3 !rounded-button border-gray-200 bg-gray-50 focus:border-primary focus:ring-primary/20 text-sm"
+                    placeholder="How can we help you?"
+                  />
+                </div>
+
+                <div class="mb-6">
+                  <label
+                    for="message"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Message</label
+                  >
+                  <textarea
+                    id="message"
+                    rows="5"
+                    class="w-full px-4 py-3 !rounded-button border-gray-200 bg-gray-50 focus:border-primary focus:ring-primary/20 text-sm"
+                    placeholder="Your message"
+                  ></textarea>
+                </div>
+
+                <div class="mb-6">
+                  <div class="flex items-center">
+                    <div class="custom-checkbox" id="newsletter-checkbox"></div>
+                    <label
+                      for="newsletter-checkbox"
+                      class="ml-3 text-sm text-gray-600 cursor-pointer"
+                      >Subscribe to our newsletter for style updates and
+                      exclusive offers</label
+                    >
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="w-full bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-sm font-medium"
+                >
+                  Send Message
+                </button>
+              </form>
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <a href="">
+      <!-- Text beside the logo -->
+      <span class="text-3xl font-['Pacifico'] text-white mb-4 inline-block">Dave's Closet</span>
+    </a>
+            
+            <p class="text-gray-300 mb-6">
+              Curated fashion for the discerning individual. Experience luxury
+              in person at our boutique.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center bg-white/10 !rounded-full hover:bg-white/20 transition-colors"
+              >
+                <i class="ri-instagram-line ri-lg"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center bg-white/10 !rounded-full hover:bg-white/20 transition-colors"
+              >
+                <i class="ri-facebook-line ri-lg"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center bg-white/10 !rounded-full hover:bg-white/20 transition-colors"
+              >
+                <i class="ri-pinterest-line ri-lg"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center bg-white/10 !rounded-full hover:bg-white/20 transition-colors"
+              >
+                <i class="ri-twitter-x-line ri-lg"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-medium mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#home"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#products"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Collections</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#about"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#faq"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >FAQ</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#resources"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Style Resources</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          
+          <div>
+            <h4 class="text-lg font-medium mb-4">Contact</h4>
+            <ul class="space-y-3">
+              <li class="flex">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-gray-300 mr-3"
+                >
+                  <i class="ri-map-pin-line"></i>
+                </div>
+                <span class="text-gray-300"
+                  >Opposite customary court, Galadimawa<br />Abuja, FCT 10001</span
+                >
+              </li>
+              <li class="flex">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-gray-300 mr-3"
+                >
+                  <i class="ri-phone-line"></i>
+                </div>
+                <span class="text-gray-300">+234 (912) 040-9549</span>
+              </li>
+              <li class="flex">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-gray-300 mr-3"
+                >
+                  <i class="ri-mail-line"></i>
+                </div>
+                <span class="text-gray-300">contact@daveesclosetboutique.com</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-300 text-sm mb-4 md:mb-0">
+            &copy; 2025 DAVE'S CLOSET. All rights reserved.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="#"
+              class="text-gray-300 text-sm hover:text-white transition-colors"
+              >Privacy Policy</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script id="mobile-menu-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+
+          // Change icon based on menu state
+          const icon = mobileMenuButton.querySelector("i");
+          if (mobileMenu.classList.contains("hidden")) {
+            icon.className = "ri-menu-line ri-lg";
+          } else {
+            icon.className = "ri-close-line ri-lg";
+          }
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.add("hidden");
+            mobileMenuButton.querySelector("i").className = "ri-menu-line ri-lg";
+          });
+        });
+      });
+    </script>
+
+    <script id="scroll-animation-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const fadeElements = document.querySelectorAll(".fade-in");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.3,
+          },
+        );
+
+        fadeElements.forEach((element) => {
+          observer.observe(element);
+        });
+      });
+    </script>
+
+    <script id="accordion-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+        accordionHeaders.forEach((header) => {
+          header.addEventListener("click", function () {
+            const content = this.nextElementSibling;
+            const icon = this.querySelector(".accordion-icon");
+
+            // Toggle active class
+            content.classList.toggle("active");
+
+            // Rotate icon
+            if (content.classList.contains("active")) {
+              icon.style.transform = "rotate(180deg)";
+            } else {
+              icon.style.transform = "rotate(0)";
+            }
+          });
+        });
+      });
+    </script>
+
+    <script id="tab-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const tabButtons = document.querySelectorAll(".tab-button");
+
+        tabButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            // Remove active class from all buttons
+            tabButtons.forEach((btn) => {
+              btn.classList.remove("active");
+            });
+
+            // Add active class to clicked button
+            this.classList.add("active");
+          });
+        });
+      });
+    </script>
+
+    <script id="form-elements-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        // Custom checkbox
+        const checkbox = document.getElementById("newsletter-checkbox");
+
+        checkbox.addEventListener("click", function () {
+          this.classList.toggle("checked");
+        });
+
+        // Custom radio buttons
+        const radioButtons = document.querySelectorAll(".custom-radio");
+
+        radioButtons.forEach((radio) => {
+          radio.addEventListener("click", function () {
+            // Uncheck all radios in the same group
+            const name = this.getAttribute("data-name");
+            if (name) {
+              document
+                .querySelectorAll(`.custom-radio[data-name="${name}"]`)
+                .forEach((r) => {
+                  r.classList.remove("checked");
+                });
+            }
+
+            // Check this radio
+            this.classList.add("checked");
+          });
+        });
+
+        // Custom switches
+        const switches = document.querySelectorAll(".custom-switch-input");
+
+        switches.forEach((switchInput) => {
+          switchInput.addEventListener("change", function () {
+            // The styling is handled by CSS
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

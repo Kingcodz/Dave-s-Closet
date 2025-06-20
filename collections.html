@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dave's Closet | Collection</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#1a1a1a", secondary: "#e6d9cc" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+          font-family: 'Montserrat', sans-serif;
+          scroll-behavior: smooth;
+      }
+      h1, h2, h3, h4, h5, h6 {
+          font-family: 'Cormorant Garamond', serif;
+      }
+      .hero-section {
+          background-image: url('https://readdy.ai/api/search-image?query=summer%20fashion%20collection%20display%20in%20luxury%20boutique%2C%20light%20linen%20dresses%20and%20outfits%2C%20neutral%20tones%2C%20soft%20natural%20lighting%2C%20minimalist%20display%2C%20high-end%20fashion%20photography%2C%20no%20people&width=1920&height=1080&seq=summer-hero&orientation=landscape');
+          background-size: cover;
+          background-position: center;
+      }
+      .product-card:hover .product-details {
+          opacity: 1;
+          transform: translateY(0);
+      }
+      .product-details {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: all 0.3s ease;
+      }
+      .fade-in {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .fade-in.visible {
+          opacity: 1;
+          transform: translateY(0);
+      }
+      .accordion-content {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+      }
+      .accordion-content.active {
+          max-height: 500px;
+      }
+      .custom-checkbox {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          background: transparent;
+          border: 1px solid #1a1a1a;
+          position: relative;
+          cursor: pointer;
+      }
+      .custom-checkbox.checked::after {
+          content: '';
+          position: absolute;
+          top: 3px;
+          left: 3px;
+          width: 12px;
+          height: 12px;
+          background: #1a1a1a;
+      }
+      .custom-range {
+          -webkit-appearance: none;
+          width: 100%;
+          height: 2px;
+          background: #e6e6e6;
+          outline: none;
+          padding: 0;
+          margin: 0;
+      }
+      .custom-range::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 16px;
+          height: 16px;
+          background: #1a1a1a;
+          cursor: pointer;
+          border-radius: 50%;
+      }
+      .custom-range::-moz-range-thumb {
+          width: 16px;
+          height: 16px;
+          background: #1a1a1a;
+          cursor: pointer;
+          border-radius: 50%;
+          border: none;
+      }
+      .tab-button {
+          position: relative;
+          overflow: hidden;
+      }
+      .tab-button::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          background: #1a1a1a;
+          transition: all 0.3s ease;
+          transform: translateX(-50%);
+      }
+      .tab-button.active::after {
+          width: 80%;
+      }
+      input:focus, textarea:focus {
+          outline: none;
+          border-color: #1a1a1a;
+      }
+      .collection-header {
+          background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-800 overflow-x-hidden">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
+  <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+    <!-- Logo with text -->
+    <a href="index.html" class="flex items-center space-x-2">
+      <!-- Logo image - replace src with your actual image path -->
+      <img 
+        src="./images/Daves Closet Logo.png" 
+        alt="Dave's Cloth Logo"
+        class="h-11 w-auto"   
+      />
+      <!-- Text beside the logo -->
+      <span class="text-xl font-['Pacifico'] font-medium text-primary">Dave's Closet</span>
+    </a>
+
+    <nav class="hidden md:flex items-center space-x-8">
+      <a
+        href="index.html"
+        class="text-sm font-medium hover:text-primary transition-colors"
+        >Home</a
+      >
+      <a
+        href="collections.html"
+        class="text-sm font-medium hover:text-primary transition-colors"
+        >Collections</a
+      >
+      <a
+        href="./About.html"
+        class="text-sm font-medium hover:text-primary transition-colors"
+        >About</a
+      >
+      <a
+        href="./index.html#contact"
+        class="text-sm font-medium hover:text-primary transition-colors"
+        >Contact</a
+      >
+    </nav>
+
+    <div class="flex items-center space-x-4">
+      <a
+        href="./index.html#contact"
+        class="hidden md:block bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all"
+        >Visit Us</a
+      >
+
+      <button
+        id="mobile-menu-button"
+        class="md:hidden w-10 h-10 flex items-center justify-center text-primary"
+      >
+        <i class="ri-menu-line ri-lg"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-white border-t border-gray-100"
+  >
+    <div class="container mx-auto px-4 py-2">
+      <nav class="flex flex-col space-y-3 py-3">
+        <a
+          href="index.html"
+          class="text-sm font-medium py-2 hover:text-primary transition-colors"
+          >Home</a
+        >
+        <a
+          href="collections.html"
+          class="text-sm font-medium py-2 hover:text-primary transition-colors"
+          >Collections</a
+        >
+        <a
+          href="./About.html"
+          class="text-sm font-medium py-2 hover:text-primary transition-colors"
+          >About</a
+        >
+        <a
+          href="./index.html#contact"
+          class="text-sm font-medium py-2 hover:text-primary transition-colors"
+          >Contact</a
+        >
+        <a
+          href="./index.html#contact"
+          class="bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-center mt-2"
+          >Visit Us</a
+        >
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- WhatsApp Button - Bottom Right Floating -->
+<div class="fixed bottom-6 right-6 z-50">
+  <a href="https://wa.me/+2349036703863?text=Hello%20there,%20I'm%20interested%20in%20your%20services" 
+     target="_blank"
+     rel="noopener noreferrer"
+     class="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg hover:scale-105 transition-all duration-300 hover:shadow-xl">
+    <i class="ri-whatsapp-line ri-2x"></i>
+  </a>
+</div>
+    <!-- Collection Hero -->
+    <section class="hero-section min-h-[60vh] pt-24 flex items-end relative overflow-hidden">
+  <!-- Background video -->
+  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+    <source src="./images/man_steaming.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Content container -->
+  <div class="container mx-auto px-4 w-full relative z-10">
+    <div class="max-w-3xl bg-white/80 backdrop-blur-sm p-8 md:p-12 fade-in mb-12">
+      <h1 class="text-4xl md:text-6xl font-light mb-4 leading-tight">
+        Our Closet Collection
+      </h1>
+      <p class="text-lg md:text-xl mb-8 font-light">
+        Lightweight fabrics in neutral tones, designed for comfort and elegance in warm weather. 
+        Our collection celebrates effortless style with breathable natural materials.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a
+          href="./index.html#contact"
+          class="border border-primary text-primary px-8 py-3 !rounded-button whitespace-nowrap hover:bg-primary hover:text-white transition-all text-sm font-medium"
+        >Book a Fitting</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Collection Details -->
+    <section id="collection" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div class="lg:col-span-2">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <!-- Product 1 -->
+              <div
+                class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+              >
+                <div class="aspect-[3/4] overflow-hidden">
+                  <img
+                    src="./images/collection1.jpg"
+                    alt="Linen Dress"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div
+                  class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+                >
+                  <h3 class="text-xl font-medium mb-2">Brown T-Shirt</h3>
+                  <p class="text-gray-600 mb-4">
+                    Organic cotton with pleating details.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-medium">₦20,000</span>
+                    <a
+                      href="./index.html#contact"
+                      class="bg-primary text-white px-4 py-1.5 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-xs"
+                      >Inquire</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 2 -->
+              <div
+                class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+              >
+                <div class="aspect-[3/4] overflow-hidden">
+                  <img
+                    src="./images/collection15.jpg"
+                    alt="Silk Blouse and Pants"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div
+                  class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+                >
+                  <h3 class="text-xl font-medium mb-2">Blue T-Shirt</h3>
+                  <p class="text-gray-600 mb-4">
+                    Lightweight silk with top of the line materials.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-medium">₦78,000</span>
+                    <a
+                      href="./index.html#contact"
+                      class="bg-primary text-white px-4 py-1.5 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-xs"
+                      >Inquire</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 3 -->
+              <div
+                class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+              >
+                <div class="aspect-[3/4] overflow-hidden">
+                  <img
+                    src="./images/collection4.jpg"
+                    alt="Cotton White Tank Top"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div
+                  class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+                >
+                  <h3 class="text-xl font-medium mb-2">Cotton White Tank Top</h3>
+                  <p class="text-gray-600 mb-4">
+                    Versatile organic cotton top imported from oversees
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-medium">₦14,200</span>
+                    <a
+                      href="./index.html#contact"
+                      class="bg-primary text-white px-4 py-1.5 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-xs"
+                      >Inquire</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 4 -->
+              <div
+                class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+              >
+                <div class="aspect-[3/4] overflow-hidden">
+                  <img
+                    src="./images/collection13.jpg"
+                    alt="Zip Jacket"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div
+                  class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+                >
+                  <h3 class="text-xl font-medium mb-2">Zip Jacket</h3>
+                  <p class="text-gray-600 mb-4">
+                    Zip Jacket in breathable material.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-medium">₦26,500</span>
+                    <a
+                      href="./index.html#contact"
+                      class="bg-primary text-white px-4 py-1.5 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-xs"
+                      >Inquire</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+
+               <!-- Product 5 -->
+              <div
+                class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+              >
+                <div class="aspect-[3/4] overflow-hidden">
+                  <img
+                    src="./images/collection3.jpg"
+                    alt="Zip Jacket"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div
+                  class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+                >
+                  <h3 class="text-xl font-medium mb-2">Hawain Shirt</h3>
+                  <p class="text-gray-600 mb-4">
+                    Comfortable for any weather and occasion.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-medium">₦20,500</span>
+                    <a
+                      href="./index.html#contact"
+                      class="bg-primary text-white px-4 py-1.5 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-xs"
+                      >Inquire</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+
+
+              <!-- Product 6 -->
+              <div
+                class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+              >
+                <div class="aspect-[3/4] overflow-hidden">
+                  <img
+                    src="./images/collection7.jpg"
+                    alt="Zip Jacket"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div
+                  class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+                >
+                  <h3 class="text-xl font-medium mb-2">Yeezy Slides</h3>
+                  <p class="text-gray-600 mb-4">
+                    Comfortable slippers for a comfortable locomotion.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-medium">₦10,000</span>
+                    <a
+                      href="./index.html#contact"
+                      class="bg-primary text-white px-4 py-1.5 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-xs"
+                      >Inquire</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+
+
+              <!-- Product 7 -->
+              <div
+                class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+              >
+                <div class="aspect-[3/4] overflow-hidden">
+                  <img
+                    src="./images/collection9.jpg"
+                    alt="Zip Jacket"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div
+                  class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+                >
+                  <h3 class="text-xl font-medium mb-2">Blue Jeans</h3>
+                  <p class="text-gray-600 mb-4">
+                    Top of the line designer jeans.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-medium">₦40,000</span>
+                    <a
+                      href="./index.html#contact"
+                      class="bg-primary text-white px-4 py-1.5 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-xs"
+                      >Inquire</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+
+
+              <!-- Product 8 -->
+              <div
+                class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+              >
+                <div class="aspect-[3/4] overflow-hidden">
+                  <img
+                    src="./images/collection10.jpg"
+                    alt="Zip Jacket"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div
+                  class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+                >
+                  <h3 class="text-xl font-medium mb-2">Black Jeans</h3>
+                  <p class="text-gray-600 mb-4">
+                    Top of the line designer black jeans.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-medium">₦40,000</span>
+                    <a
+                      href="./index.html#contact"
+                      class="bg-primary text-white px-4 py-1.5 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-xs"
+                      >Inquire</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+
+
+              
+              <!-- Product 10 -->
+              <div
+                class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+              >
+                <div class="aspect-[3/4] overflow-hidden">
+                  <img
+                    src="./images/collection12.jpg"
+                    alt="Zip Jacket"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div
+                  class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+                >
+                  <h3 class="text-xl font-medium mb-2">Sleevless Zip Jacket</h3>
+                  <p class="text-gray-600 mb-4">
+                    Zip Jacket in breathable material.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-medium">₦30,000</span>
+                    <a
+                      href="./index.html#contact"
+                      class="bg-primary text-white px-4 py-1.5 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-xs"
+                      >Inquire</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- Product 11 -->
+              <div
+                class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+              >
+                <div class="aspect-[3/4] overflow-hidden">
+                  <img
+                    src="./images/collection14.jpg"
+                    alt="Zip Jacket"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div
+                  class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+                >
+                  <h3 class="text-xl font-medium mb-2">Shirt</h3>
+                  <p class="text-gray-600 mb-4">
+                    Blue buttoned up shirt in breathable material.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-medium">₦20,500</span>
+                    <a
+                      href="./index.html#contact"
+                      class="bg-primary text-white px-4 py-1.5 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-xs"
+                      >Inquire</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+
+
+              <!-- Product 12 -->
+              <div
+                class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+              >
+                <div class="aspect-[3/4] overflow-hidden">
+                  <img
+                    src="./images/collection17.jpg"
+                    alt="Zip Jacket"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div
+                  class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+                >
+                  <h3 class="text-xl font-medium mb-2">Beanie</h3>
+                  <p class="text-gray-600 mb-4">
+                    Aesthetic beanie to complement your dressing.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-medium">₦10,000</span>
+                    <a
+                      href="./index.html#contact"
+                      class="bg-primary text-white px-4 py-1.5 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-xs"
+                      >Inquire</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+
+
+              <!-- Product 13 -->
+              <div
+                class="product-card relative overflow-hidden bg-white shadow-sm !rounded-lg fade-in"
+              >
+                <div class="aspect-[3/4] overflow-hidden">
+                  <img
+                    src="./images/materials.png"
+                    alt="Zip Jacket"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div
+                  class="product-details absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6"
+                >
+                  <h3 class="text-xl font-medium mb-2">Vintage Shirts</h3>
+                  <p class="text-gray-600 mb-4">
+                    Vintages in vogue.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-medium">₦20,000</span>
+                    <a
+                      href="./index.html#contact"
+                      class="bg-primary text-white px-4 py-1.5 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-xs"
+                      >Inquire</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+            </div>
+          </div>
+
+          <div class="fade-in">
+            <div class="sticky top-24">
+              <h2 class="text-3xl font-light mb-6">Collection Details</h2>
+              <p class="text-gray-600 mb-6">
+                Our collection is designed for effortless elegance in warm weather. 
+                Each piece is crafted from natural, breathable fabrics that drape beautifully 
+                while keeping you cool and comfortable.
+              </p>
+              
+              <div class="mb-8">
+                <h3 class="text-xl font-medium mb-4">Key Features</h3>
+                <ul class="space-y-3">
+                  <li class="flex items-start">
+                    <div class="w-6 h-6 flex items-center justify-center text-primary mr-3">
+                      <i class="ri-leaf-line"></i>
+                    </div>
+                    <span class="text-gray-600">100% natural fabrics including linen, cotton and silk</span>
+                  </li>
+                  <li class="flex items-start">
+                    <div class="w-6 h-6 flex items-center justify-center text-primary mr-3">
+                      <i class="ri-palette-line"></i>
+                    </div>
+                    <span class="text-gray-600">Neutral color palette inspired by summer sands and seashells</span>
+                  </li>
+                  <li class="flex items-start">
+                    <div class="w-6 h-6 flex items-center justify-center text-primary mr-3">
+                      <i class="ri-scissors-line"></i>
+                    </div>
+                    <span class="text-gray-600">Relaxed silhouettes with thoughtful tailoring details</span>
+                  </li>
+                  <li class="flex items-start">
+                    <div class="w-6 h-6 flex items-center justify-center text-primary mr-3">
+                      <i class="ri-earth-line"></i>
+                    </div>
+                    <span class="text-gray-600">Ethically sourced and produced with sustainable practices</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="mb-8">
+                <h3 class="text-xl font-medium mb-4">Size Guide</h3>
+                <p class="text-gray-600 mb-4">
+                  Our collection runs true to size. For personalized sizing 
+                  recommendations, book a consultation with our stylists.
+                </p>
+                <a
+                  href="./index.html#contact"
+                  class="inline-block border border-primary text-primary px-6 py-2 !rounded-button whitespace-nowrap hover:bg-primary hover:text-white transition-all text-sm"
+                  >Book Sizing Appointment</a
+                >
+              </div>
+
+              <div>
+                <h3 class="text-xl font-medium mb-4">Care Instructions</h3>
+                <div class="accordion-item mb-4">
+                  <button
+                    class="accordion-header flex justify-between items-center w-full bg-gray-50 p-4 !rounded-lg text-left"
+                  >
+                    <span class="font-medium">Linen Care</span>
+                    <i
+                      class="ri-arrow-down-s-line text-primary accordion-icon transition-transform"
+                    ></i>
+                  </button>
+                  <div class="accordion-content bg-gray-50 px-4 !rounded-lg">
+                    <div class="py-4">
+                      <p class="text-gray-600 text-sm">
+                        Hand wash or dry clean only. Iron while damp for best results. 
+                        Natural wrinkles are part of linen's charm - embrace them!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item mb-4">
+                  <button
+                    class="accordion-header flex justify-between items-center w-full bg-gray-50 p-4 !rounded-lg text-left"
+                  >
+                    <span class="font-medium">Silk Care</span>
+                    <i
+                      class="ri-arrow-down-s-line text-primary accordion-icon transition-transform"
+                    ></i>
+                  </button>
+                  <div class="accordion-content bg-gray-50 px-4 !rounded-lg">
+                    <div class="py-4">
+                      <p class="text-gray-600 text-sm">
+                        Dry clean recommended. If hand washing, use mild detergent 
+                        and cold water. Never wring - roll in towel to remove excess 
+                        water and lay flat to dry.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <button
+                    class="accordion-header flex justify-between items-center w-full bg-gray-50 p-4 !rounded-lg text-left"
+                  >
+                    <span class="font-medium">Cotton Care</span>
+                    <i
+                      class="ri-arrow-down-s-line text-primary accordion-icon transition-transform"
+                    ></i>
+                  </button>
+                  <div class="accordion-content bg-gray-50 px-4 !rounded-lg">
+                    <div class="py-4">
+                      <p class="text-gray-600 text-sm">
+                        Machine wash cold with similar colors. Tumble dry low or 
+                        line dry. Iron on medium heat if needed.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-16 fade-in">
+          <div class="bg-secondary/10 p-12 !rounded-lg">
+            <div class="max-w-3xl mx-auto text-center">
+              <h2 class="text-3xl font-light mb-6">Complete Your Look</h2>
+              <p class="text-gray-600 mb-8">
+                Pair your pieces with our curated selection of accessories - 
+                from wide-brimmed hats to minimalist sandals and delicate jewelry. 
+                Visit our boutique to see the full collection.
+              </p>
+              <a
+                href="./index.html#contact"
+                class="inline-block bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-sm font-medium"
+                >Schedule a Private Viewing</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Collections -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12 fade-in">
+          <h2 class="text-3xl font-light mb-4">You May Also Like</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Explore our other seasonal collections that complement your aesthetics.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Collection 1 -->
+          <div class="fade-in">
+            <a href="evening-collection.html" class="group">
+              <div class="aspect-[4/5] overflow-hidden mb-4 !rounded-lg">
+                <img
+                  src="./images/collection6.jpg"
+                  alt="Evening Collection"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <h3 class="text-xl font-medium mb-1 group-hover:text-primary transition-colors">Grey T-shirt</h3>
+              <p class="text-gray-600">Men T-shirt for special occasions</p>
+            </a>
+          </div>
+
+          <!-- Collection 2 -->
+          <div class="fade-in">
+            <a href="resort-collection.html" class="group">
+              <div class="aspect-[4/5] overflow-hidden mb-4 !rounded-lg">
+                <img
+                  src="./images/collection5.jpg"
+                  alt="Resort Collection"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <h3 class="text-xl font-medium mb-1 group-hover:text-primary transition-colors">Men's Sandals</h3>
+              <p class="text-gray-600">Top of the line ready styles with effortless steeze</p>
+            </a>
+          </div>
+
+          <!-- Collection 3 -->
+          <div class="fade-in">
+            <a href="casual-collection.html" class="group">
+              <div class="aspect-[4/5] overflow-hidden mb-4 !rounded-lg">
+                <img
+                  src="./images/collection2.jpg"
+                  alt="Casual Collection"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <h3 class="text-xl font-medium mb-1 group-hover:text-primary transition-colors">Shirt</h3>
+              <p class="text-gray-600">Elevated essentials for everyday wear</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-primary text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+          <h2 class="text-3xl md:text-4xl font-light mb-6">Experience the Collection in Person</h2>
+          <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+            Our boutique offers personalized styling sessions to help you find the perfect pieces 
+            for your wardrobe. Visit us today.
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a
+              href="./index.html#contact"
+              class="bg-white text-primary px-8 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-sm font-medium"
+              >Book an Appointment</a
+            >
+            <a
+              href="tel:+2349120409549"
+              class="border border-white text-white px-8 py-3 !rounded-button whitespace-nowrap hover:bg-white hover:text-primary transition-all text-sm font-medium"
+              >Call Us: +234 (912) 040-9549</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div>
+           
+              <a href="">
+      <!-- Text beside the logo -->
+      <span class="text-3xl font-['Pacifico'] text-white mb-4 inline-block">Dave's Closet</span>
+    </a>
+
+
+            <p class="text-gray-300 mb-6">
+              Curated fashion for the discerning individual. Experience luxury
+              in person at our boutique.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center bg-white/10 !rounded-full hover:bg-white/20 transition-colors"
+              >
+                <i class="ri-instagram-line ri-lg"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center bg-white/10 !rounded-full hover:bg-white/20 transition-colors"
+              >
+                <i class="ri-facebook-line ri-lg"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center bg-white/10 !rounded-full hover:bg-white/20 transition-colors"
+              >
+                <i class="ri-pinterest-line ri-lg"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center bg-white/10 !rounded-full hover:bg-white/20 transition-colors"
+              >
+                <i class="ri-twitter-x-line ri-lg"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-medium mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="index.html"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="collections.html"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Collections</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./About.html"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./index.html#contact"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          
+
+          <div>
+            <h4 class="text-lg font-medium mb-4">Contact</h4>
+            <ul class="space-y-3">
+              <li class="flex">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-gray-300 mr-3"
+                >
+                  <i class="ri-map-pin-line"></i>
+                </div>
+                <span class="text-gray-300"
+                  >Opposite customary court, Galadimawa<br />Abuja 10001</span
+                >
+              </li>
+              <li class="flex">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-gray-300 mr-3"
+                >
+                  <i class="ri-phone-line"></i>
+                </div>
+                <span class="text-gray-300">+234 (912) 040-9549</span>
+              </li>
+              <li class="flex">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-gray-300 mr-3"
+                >
+                  <i class="ri-mail-line"></i>
+                </div>
+                <span class="text-gray-300">contact@daveesclosetboutique.com</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-300 text-sm mb-4 md:mb-0">
+            &copy; 2025 DAVE'S CLOSET. All rights reserved.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="#"
+              class="text-gray-300 text-sm hover:text-white transition-colors"
+              >Privacy Policy</a
+            >
+            
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script id="mobile-menu-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+
+          // Change icon based on menu state
+          const icon = mobileMenuButton.querySelector("i");
+          if (mobileMenu.classList.contains("hidden")) {
+            icon.className = "ri-menu-line ri-lg";
+          } else {
+            icon.className = "ri-close-line ri-lg";
+          }
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.add("hidden");
+            mobileMenuButton.querySelector("i").className = "ri-menu-line ri-lg";
+          });
+        });
+      });
+    </script>
+
+    <script id="scroll-animation-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const fadeElements = document.querySelectorAll(".fade-in");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+          },
+        );
+
+        fadeElements.forEach((element) => {
+          observer.observe(element);
+        });
+      });
+    </script>
+
+    <script id="accordion-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+        accordionHeaders.forEach((header) => {
+          header.addEventListener("click", function () {
+            const content = this.nextElementSibling;
+            const icon = this.querySelector(".accordion-icon");
+
+            // Toggle active class
+            content.classList.toggle("active");
+
+            // Rotate icon
+            if (content.classList.contains("active")) {
+              icon.style.transform = "rotate(180deg)";
+            } else {
+              icon.style.transform = "rotate(0)";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

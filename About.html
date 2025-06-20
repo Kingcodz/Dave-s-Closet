@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAVE'S CLOSET | About Our Luxury Boutique</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#1a1a1a", secondary: "#e6d9cc" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+          font-family: 'Montserrat', sans-serif;
+          scroll-behavior: smooth;
+      }
+      h1, h2, h3, h4, h5, h6 {
+          font-family: 'Cormorant Garamond', serif;
+      }
+      .hero-section {
+          background-image: url('https://readdy.ai/api/search-image?query=luxury%20fashion%20boutique%20storefront%20with%20elegant%20display%20windows%2C%20minimalist%20design%2C%20natural%20lighting%2C%20high-end%20retail%20space%2C%20professional%20photography&width=1920&height=1080&seq=about-hero&orientation=landscape');
+          background-size: cover;
+          background-position: center;
+      }
+      .fade-in {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .fade-in.visible {
+          opacity: 1;
+          transform: translateY(0);
+      }
+      .accordion-content {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+      }
+      .accordion-content.active {
+          max-height: 500px;
+      }
+      .tab-button {
+          position: relative;
+          overflow: hidden;
+      }
+      .tab-button::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          background: #1a1a1a;
+          transition: all 0.3s ease;
+          transform: translateX(-50%);
+      }
+      .tab-button.active::after {
+          width: 80%;
+      }
+      .policy-section h3 {
+          font-size: 1.25rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+          color: #1a1a1a;
+      }
+      .policy-section p, .policy-section ul {
+          margin-bottom: 1rem;
+          color: #4a5568;
+      }
+      .policy-section ul {
+          list-style-type: disc;
+          padding-left: 1.5rem;
+      }
+      .policy-section li {
+          margin-bottom: 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-800 overflow-x-hidden">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
+  <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+    <!-- Logo with text -->
+    <a href="index.html" class="flex items-center space-x-2">
+      <!-- Logo image - replace src with your actual image path -->
+      <img 
+        src="./images/Daves Closet Logo.png" 
+        alt="Dave's Cloth Logo"
+        class="h-11 w-auto"   
+      />
+      <!-- Text beside the logo -->
+      <span class="text-xl font-['Pacifico'] font-medium text-primary">Dave's Closet</span>
+    </a>
+
+    <nav class="hidden md:flex items-center space-x-8">
+      <a
+        href="index.html"
+        class="text-sm font-medium hover:text-primary transition-colors"
+        >Home</a
+      >
+      <a
+        href="collections.html"
+        class="text-sm font-medium hover:text-primary transition-colors"
+        >Collections</a
+      >
+      <a
+        href="./About.html"
+        class="text-sm font-medium hover:text-primary transition-colors"
+        >About</a
+      >
+      <a
+        href="./index.html#contact"
+        class="text-sm font-medium hover:text-primary transition-colors"
+        >Contact</a
+      >
+    </nav>
+
+    <div class="flex items-center space-x-4">
+      <a
+        href="./index.html#contact"
+        class="hidden md:block bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all"
+        >Visit Us</a
+      >
+
+      <button
+        id="mobile-menu-button"
+        class="md:hidden w-10 h-10 flex items-center justify-center text-primary"
+      >
+        <i class="ri-menu-line ri-lg"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-white border-t border-gray-100"
+  >
+    <div class="container mx-auto px-4 py-2">
+      <nav class="flex flex-col space-y-3 py-3">
+        <a
+          href="index.html"
+          class="text-sm font-medium py-2 hover:text-primary transition-colors"
+          >Home</a
+        >
+        <a
+          href="collections.html"
+          class="text-sm font-medium py-2 hover:text-primary transition-colors"
+          >Collections</a
+        >
+        <a
+          href="./About.html"
+          class="text-sm font-medium py-2 hover:text-primary transition-colors"
+          >About</a
+        >
+        <a
+          href="./index.html#contact"
+          class="text-sm font-medium py-2 hover:text-primary transition-colors"
+          >Contact</a
+        >
+        <a
+          href="./index.html#contact"
+          class="bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-center mt-2"
+          >Visit Us</a
+        >
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- WhatsApp Button - Bottom Right Floating -->
+<div class="fixed bottom-6 right-6 z-50">
+  <a href="https://wa.me/+2349036703863?text=Hello%20there,%20I'm%20interested%20in%20your%20services" 
+     target="_blank"
+     rel="noopener noreferrer"
+     class="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg hover:scale-105 transition-all duration-300 hover:shadow-xl">
+    <i class="ri-whatsapp-line ri-2x"></i>
+  </a>
+</div>
+    <!-- Hero Section -->
+    <section class="hero-section min-h-[50vh] pt-24 flex items-center">
+      <div class="container mx-auto px-4 w-full">
+        <div class="max-w-2xl bg-white/80 backdrop-blur-sm p-8 md:p-12 fade-in">
+          <h1 class="text-4xl md:text-6xl font-light mb-4 leading-tight">
+            Our Philosophy
+          </h1>
+          <p class="text-lg md:text-xl mb-8 font-light">
+            Timeless style, exceptional craftsmanship, and personalized service 
+            define the DAVE'S CLOSET experience.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Navigation -->
+    <section class="sticky top-24 z-40 bg-white shadow-sm">
+      <div class="container mx-auto px-4">
+        <div class="flex overflow-x-auto">
+          <a href="#our-story" class="tab-button px-6 py-4 whitespace-nowrap text-sm font-medium">
+            Our Story
+          </a>
+          <!-- <a href="#our-team" class="tab-button px-6 py-4 whitespace-nowrap text-sm font-medium">
+            Our Team
+          </a> -->
+          <a href="#sustainability" class="tab-button px-6 py-4 whitespace-nowrap text-sm font-medium">
+            Sustainability
+          </a>
+          <a href="#privacy" class="tab-button px-6 py-4 whitespace-nowrap text-sm font-medium">
+            Privacy Policy
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="our-story" class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="fade-in">
+            <h2 class="text-3xl md:text-5xl font-light mb-6">Our Story</h2>
+            <p class="text-gray-600 mb-6">
+              Founded in 2015 by David, Dave's Closet was born from a passion 
+              for exceptional craftsmanship and timeless design. What began as a 
+              small boutique in New York's fashion district has grown into a 
+              destination for those who appreciate understated luxury.
+            </p>
+            <p class="text-gray-600 mb-6">
+              We believe that fashion is more than just clothing—it's an expression 
+              of individuality and a celebration of artistry. Our boutique carefully 
+              curates collections from established designers and emerging talents 
+              who share our commitment to quality, sustainability, and innovative design.
+            </p>
+            <p class="text-gray-600 mb-6">
+              Unlike online shopping, we believe in the irreplaceable experience of 
+              touching fabrics, seeing true colors, and finding your perfect fit with 
+              expert guidance. Our knowledgeable stylists provide personalized 
+              attention to help you discover pieces that complement your individual style.
+            </p>
+            <div class="flex gap-4 mt-8">
+              <a
+                href="collections.html"
+                class="bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-sm"
+                >Explore Collections</a
+              >
+              <a
+                href="./index.html#contact"
+                class="border border-primary text-primary px-6 py-2 !rounded-button whitespace-nowrap hover:bg-primary hover:text-white transition-all text-sm"
+                >Visit Our Boutique</a
+              >
+            </div>
+          </div>
+
+          
+          <div class="relative fade-in">
+            <img src="./images/rename.jpg" alt="David, Founder" class="w-full h-auto !rounded-lg shadow-lg object-cover">
+            
+            <div
+              class="absolute -bottom-8 -left-8 bg-white p-6 !rounded-lg shadow-lg max-w-xs hidden md:block"
+            >
+              <p class="text-gray-800 italic">
+                "True style isn't about trends—it's about finding pieces that 
+                speak to you and stand the test of time."
+              </p>
+              <p class="text-primary font-medium mt-4">
+                —  David, Founder
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-24 fade-in">
+          <h2 class="text-3xl md:text-4xl font-light mb-12 text-center">
+            Our Values
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 !rounded-lg shadow-sm text-center">
+              <div
+                class="w-16 h-16 bg-secondary/20 !rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <i class="ri-heart-line ri-xl text-primary"></i>
+              </div>
+              <h3 class="text-xl font-medium mb-4">Quality Craftsmanship</h3>
+              <p class="text-gray-600">
+                We prioritize exceptional materials 
+                and meticulous attention to detail in every piece.
+              </p>
+            </div>
+
+            <div class="bg-white p-8 !rounded-lg shadow-sm text-center">
+              <div
+                class="w-16 h-16 bg-secondary/20 !rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <i class="ri-leaf-line ri-xl text-primary"></i>
+              </div>
+              <h3 class="text-xl font-medium mb-4">Sustainable Practices</h3>
+              <p class="text-gray-600">
+                We are committed to promoting ethical fashion and reducing 
+                environmental impact through thoughtful curation.
+              </p>
+            </div>
+
+            <div class="bg-white p-8 !rounded-lg shadow-sm text-center">
+              <div
+                class="w-16 h-16 bg-secondary/20 !rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <i class="ri-user-heart-line ri-xl text-primary"></i>
+              </div>
+              <h3 class="text-xl font-medium mb-4">Personal Connection</h3>
+              <p class="text-gray-600">
+                We believe in building relationships with our clients, offering 
+                personalized styling advice and exceptional service.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <!-- <section id="our-team" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-3xl md:text-5xl font-light mb-4">Our Team</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Meet the passionate individuals who make DAVE'S CLOSET a truly special experience.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8"> -->
+          <!-- Team Member 1 -->
+          <!-- <div class="bg-white shadow-sm !rounded-lg overflow-hidden fade-in">
+            <div class="aspect-square overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=professional%20fashion%20stylist%20portrait%2C%30s%2C%20elegant%20woman%2C%20minimalist%20style%2C%20studio%20lighting%2C%20neutral%20background&width=600&height=600&seq=team1&orientation=square"
+                alt="Sophie Laurent"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-medium mb-1">Sophie Laurent</h3>
+              <p class="text-gray-500 text-sm mb-4">Head Stylist</p>
+              <p class="text-gray-600 mb-4">
+                With over 15 years in the fashion industry, Sophie has an exceptional 
+                eye for pairing pieces to create cohesive, personalized looks.
+              </p>
+              <div class="flex space-x-3">
+                <a href="#" class="text-primary hover:text-primary/80 transition-colors">
+                  <i class="ri-instagram-line ri-lg"></i>
+                </a>
+                <a href="#" class="text-primary hover:text-primary/80 transition-colors">
+                  <i class="ri-linkedin-line ri-lg"></i>
+                </a>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- Team Member 2 -->
+          <!-- <div class="bg-white shadow-sm !rounded-lg overflow-hidden fade-in">
+            <div class="aspect-square overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=professional%20fashion%20buyer%20portrait%2C%40s%2C%20stylish%20man%2C%20minimalist%20style%2C%20studio%20lighting%2C%20neutral%20background&width=600&height=600&seq=team2&orientation=square"
+                alt="James Chen"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-medium mb-1">James Chen</h3>
+              <p class="text-gray-500 text-sm mb-4">Buyer & Merchandiser</p>
+              <p class="text-gray-600 mb-4">
+                James travels globally to discover emerging designers and unique 
+                pieces that align with our aesthetic and quality standards.
+              </p>
+              <div class="flex space-x-3">
+                <a href="#" class="text-primary hover:text-primary/80 transition-colors">
+                  <i class="ri-instagram-line ri-lg"></i>
+                </a>
+                <a href="#" class="text-primary hover:text-primary/80 transition-colors">
+                  <i class="ri-linkedin-line ri-lg"></i>
+                </a>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- Team Member 3 -->
+          <!-- <div class="bg-white shadow-sm !rounded-lg overflow-hidden fade-in">
+            <div class="aspect-square overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=professional%20tailor%20portrait%2C%50s%2C%20skilled%20craftsman%2C%20minimalist%20style%2C%20studio%20lighting%2C%20neutral%20background&width=600&height=600&seq=team3&orientation=square"
+                alt="Marco Ricci"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-medium mb-1">Marco Ricci</h3>
+              <p class="text-gray-500 text-sm mb-4">Master Tailor</p>
+              <p class="text-gray-600 mb-4">
+                Trained in Milan, Marco brings decades of expertise to ensure every 
+                garment fits perfectly through our complimentary alteration service.
+              </p>
+              <div class="flex space-x-3">
+                <a href="#" class="text-primary hover:text-primary/80 transition-colors">
+                  <i class="ri-instagram-line ri-lg"></i>
+                </a>
+                <a href="#" class="text-primary hover:text-primary/80 transition-colors">
+                  <i class="ri-linkedin-line ri-lg"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12 fade-in">
+          <p class="text-gray-600 mb-6">
+            Interested in joining our team? We're always looking for passionate individuals.
+          </p>
+          <a
+            href="contact.html"
+            class="inline-block border border-primary text-primary px-8 py-3 !rounded-button whitespace-nowrap hover:bg-primary hover:text-white transition-all text-sm font-medium"
+            >Contact Us About Careers</a
+          >
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Sustainability Section -->
+    <section id="sustainability" class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="fade-in">
+            <h2 class="text-3xl md:text-5xl font-light mb-6">Our Commitment to Sustainability</h2>
+            <p class="text-gray-600 mb-6">
+              At DAVE'S CLOSET, we believe luxury and sustainability must coexist. 
+              We're committed to reducing our environmental impact while maintaining 
+              the highest standards of quality and design.
+            </p>
+            <p class="text-gray-600 mb-6">
+              We carefully vet all our designers and brands for their sustainability 
+              practices, prioritizing those who use organic materials, ethical production 
+              methods, and sustainable business models.
+            </p>
+            <div class="mb-8">
+              <h3 class="text-xl font-medium mb-4">Our Initiatives</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <div class="w-6 h-6 flex items-center justify-center text-primary mr-3">
+                    <i class="ri-arrow-right-line"></i>
+                  </div>
+                  <span class="text-gray-600">Partnering with brands that use organic and recycled materials</span>
+                </li>
+                <li class="flex items-start">
+                  <div class="w-6 h-6 flex items-center justify-center text-primary mr-3">
+                    <i class="ri-arrow-right-line"></i>
+                  </div>
+                  <span class="text-gray-600">Offering a garment care program to extend the life of your pieces</span>
+                </li>
+                <li class="flex items-start">
+                  <div class="w-6 h-6 flex items-center justify-center text-primary mr-3">
+                    <i class="ri-arrow-right-line"></i>
+                  </div>
+                  <span class="text-gray-600">Using eco-friendly packaging and shipping materials</span>
+                </li>
+                <li class="flex items-start">
+                  <div class="w-6 h-6 flex items-center justify-center text-primary mr-3">
+                    <i class="ri-arrow-right-line"></i>
+                  </div>
+                  <span class="text-gray-600">Implementing energy-efficient practices in our boutique</span>
+                </li>
+              </ul>
+            </div>
+                    </div>
+
+          <div class="relative fade-in">
+            <img
+              src="./images/materials02.jpg"
+              alt="Sustainable Materials"
+              class="w-full h-auto !rounded-lg shadow-lg object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy Policy Section -->
+    <section id="privacy" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto fade-in">
+          <h2 class="text-3xl md:text-5xl font-light mb-8">Privacy Policy</h2>
+          <div class="bg-white shadow-sm !rounded-lg p-8 md:p-12 policy-section">
+            <p class="text-gray-600 mb-6">
+              <strong>Last Updated:</strong> June 15, 2025
+            </p>
+
+            <h3>1. Introduction</h3>
+            <p>
+              DAVE'S CLOSET  is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or boutique.
+            </p>
+
+            <h3>2. Information We Collect</h3>
+            <p>We may collect personal information that you voluntarily provide to us including:</p>
+            <ul>
+              <li>Contact information (name, email address, phone number)</li>
+              <li>Demographic information (size preferences, style preferences)</li>
+              <li>Communications and correspondence</li>
+              <li>Website usage data through cookies and similar technologies</li>
+            </ul>
+
+            <h3>3. How We Use Your Information</h3>
+            <p>We use the information we collect to:</p>
+            <ul>
+              <li>Provide and maintain our services</li>
+              <li>Communicate with you about products, services, and promotions</li>
+              <li>Improve our website and services</li>
+              <li>Comply with legal obligations</li>
+            </ul>
+
+            <h3>4. Sharing Your Information</h3>
+            <p>We do not sell your personal information. We may share information with:</p>
+            <ul>
+              <li>Service providers who assist with our business operations</li>
+              <li>Legal authorities when required by law</li>
+              <li>Business transfers (in case of merger or acquisition)</li>
+            </ul>
+
+            <h3>5. Data Security</h3>
+            <p>
+              We implement appropriate technical and organizational measures to protect your personal information. However, no method of transmission over the Internet is 100% secure.
+            </p>
+
+            <h3>6. Your Rights</h3>
+            <p>Depending on your location, you may have rights to:</p>
+            <ul>
+              <li>Access, correct, or delete your personal information</li>
+              <li>Object to or restrict processing of your data</li>
+              <li>Withdraw consent (where applicable)</li>
+            </ul>
+
+            <h3>7. Cookies and Tracking Technologies</h3>
+            <p>
+              We use cookies to enhance your experience. You can set your browser to refuse cookies, but some features may not function properly.
+            </p>
+
+            <h3>8. Children's Privacy</h3>
+            <p>
+                We do not knowingly collect personal information from children.
+            </p>
+
+            <h3>9. Changes to This Policy</h3>
+            <p>
+              We may update this Privacy Policy periodically. We will notify you of any changes by posting the new policy on this page.
+            </p>
+
+            <h3>10. Contact Us</h3>
+            <p>
+              If you have questions about this Privacy Policy, please contact us at:<br>
+              DAVE'S CLOSET<br>
+              Opposite customary court, Galadimawa<br>
+              Abuja, FCT 10001<br>
+              Email: privacy@davesclosetboutique.com<br>
+              Phone: +234 (912) 040-9549
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-primary text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+          <h2 class="text-3xl md:text-4xl font-light mb-6">Experience the DAVE'S CLOSET Difference</h2>
+          <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+            Visit our boutique to discover our collections and experience our personalized service.
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a
+              href="./index.html#contact"
+              class="bg-white text-primary px-8 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all text-sm font-medium"
+              >Book an Appointment</a
+            >
+            <a
+              href="tel:+2349120409549"
+              class="border border-white text-white px-8 py-3 !rounded-button whitespace-nowrap hover:bg-white hover:text-primary transition-all text-sm font-medium"
+              >+234 (912) 040-9549</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <a href="">
+      <!-- Text beside the logo -->
+      <span class="text-3xl font-['Pacifico'] text-white mb-4 inline-block">Dave's Closet</span>
+    </a>
+            
+            <p class="text-gray-300 mb-6">
+              Curated fashion for the discerning individual. Experience luxury
+              in person at our boutique.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href=""
+                class="w-10 h-10 flex items-center justify-center bg-white/10 !rounded-full hover:bg-white/20 transition-colors"
+              >
+                <i class="ri-instagram-line ri-lg"></i>
+              </a>
+              <a
+                href=""
+                class="w-10 h-10 flex items-center justify-center bg-white/10 !rounded-full hover:bg-white/20 transition-colors"
+              >
+                <i class="ri-facebook-line ri-lg"></i>
+              </a>
+              <a
+                href=""
+                class="w-10 h-10 flex items-center justify-center bg-white/10 !rounded-full hover:bg-white/20 transition-colors"
+              >
+                <i class="ri-pinterest-line ri-lg"></i>
+              </a>
+              <a
+                href=""
+                class="w-10 h-10 flex items-center justify-center bg-white/10 !rounded-full hover:bg-white/20 transition-colors"
+              >
+                <i class="ri-twitter-x-line ri-lg"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-medium mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="./index.html"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./collections.html"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Collections</a
+                >
+              </li>
+              <li>
+                <a
+                  href="about.html"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./index.html#contact"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+                    <div>
+            <h4 class="text-lg font-medium mb-4">Contact</h4>
+            <ul class="space-y-3">
+              <li class="flex">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-gray-300 mr-3"
+                >
+                  <i class="ri-map-pin-line"></i>
+                </div>
+                <span class="text-gray-300"
+                  >Opposite customary court, Galadimawa<br />Abuja, FCT 10001</span
+                >
+              </li>
+              <li class="flex">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-gray-300 mr-3"
+                >
+                  <i class="ri-phone-line"></i>
+                </div>
+                <span class="text-gray-300">+234 (912) 040-9549</span>
+              </li>
+              <li class="flex">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-gray-300 mr-3"
+                >
+                  <i class="ri-mail-line"></i>
+                </div>
+                <span class="text-gray-300">contact@davesclosetboutique.com</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-300 text-sm mb-4 md:mb-0">
+            &copy; 2025 DAVE'S CLOSET. All rights reserved.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="#privacy"
+              class="text-gray-300 text-sm hover:text-white transition-colors"
+              >Privacy Policy</a
+            >
+            
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script id="mobile-menu-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+
+          // Change icon based on menu state
+          const icon = mobileMenuButton.querySelector("i");
+          if (mobileMenu.classList.contains("hidden")) {
+            icon.className = "ri-menu-line ri-lg";
+          } else {
+            icon.className = "ri-close-line ri-lg";
+          }
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.add("hidden");
+            mobileMenuButton.querySelector("i").className = "ri-menu-line ri-lg";
+          });
+        });
+      });
+    </script>
+
+    <script id="scroll-animation-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const fadeElements = document.querySelectorAll(".fade-in");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+          },
+        );
+
+        fadeElements.forEach((element) => {
+          observer.observe(element);
+        });
+      });
+    </script>
+
+    <script id="accordion-script"> 
+  document.addEventListener("DOMContentLoaded", function () {
+    const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+    accordionHeaders.forEach((header) => {
+      header.addEventListener("click", function () {
+        const content = this.nextElementSibling;
+        const icon = this.querySelector(".accordion-icon");
+
+        // Toggle active class
+        content.classList.toggle("active");
+
+        // Rotate icon
+        if (content.classList.contains("active")) {
+          icon.style.transform = "rotate(180deg)";
+        } else {
+          icon.style.transform = "rotate(0deg)";
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
